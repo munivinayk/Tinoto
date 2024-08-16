@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, Moon, Sun } from 'lucide-react';
 import './LandingPage.css';
 import LandingPagePic from './Assets/TravellerLandingPageImage.png'
+import { ReactComponent as Logo } from './Assets/logo.svg';
 
 const LandingPage = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -22,12 +23,12 @@ const LandingPage = () => {
     <div className={`landing-page ${darkMode ? 'dark' : ''}`}>
       <header className="header">
         <div className="logo">
-          <MapPin className="logo-icon" />
+          <Logo className="logo-icon" />
           <span className="logo-text">Tinoto</span>
         </div>
         
         <nav className="nav">
-          <button className="btn btn-login">Log in</button>
+          <button className="btn btn-primary">Log in</button>
           <button className="btn btn-signup">Sign up</button>
           <button 
             onClick={toggleDarkMode} 

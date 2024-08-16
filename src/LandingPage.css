@@ -35,15 +35,19 @@
 }
 
 .logo-icon {
-  color: #f56565;
+  width: 64px;
+  height: 64px;
+  fill:#f56565;
 }
 
 .dark .logo-icon {
+  width: 64px;
+  height: 64px;
   color: #fc8181;
 }
 
 .logo-text {
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #f56565;
   margin-left: 0.5rem;
