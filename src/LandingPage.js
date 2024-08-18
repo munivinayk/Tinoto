@@ -3,9 +3,14 @@ import { MapPin, Moon, Sun } from 'lucide-react';
 import './LandingPage.css';
 import LandingPagePic from './Assets/TravellerLandingPageImage.png'
 import { ReactComponent as Logo } from './Assets/logo.svg';
+import { Link } from 'react-router-dom';
+import LoginModal from './LoginModal';
+import SignUpModal from './SignUpModal';
 
 const LandingPage = () => {
-  const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -18,6 +23,16 @@ const LandingPage = () => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+    
+  const handleSwitchToSignUp = () => {
+    setIsLoginModalOpen(false);
+    setIsSignUpModalOpen(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setIsSignUpModalOpen(false);
+    setIsLoginModalOpen(true);
+  };
 
   return (
     <div className={`landing-page ${darkMode ? 'dark' : ''}`}>
@@ -28,8 +43,8 @@ const LandingPage = () => {
         </div>
         
         <nav className="nav">
-          <button className="btn btn-primary">Log in</button>
-          <button className="btn btn-signup">Sign up</button>
+          <button className="btn btn-primary" onClick={() => setIsLoginModalOpen(true)}>Log in</button>
+          <button className="btn btn-signup" onClick={() => setIsSignUpModalOpen(true)}>Sign up</button>
           <button 
             onClick={toggleDarkMode} 
             className="btn btn-toggle"
@@ -61,6 +76,18 @@ const LandingPage = () => {
           <div></div>
         </div>
       </main>
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+        darkMode={darkMode}
+        onSwitchToSignUp={handleSwitchToSignUp}
+      />
+      <SignUpModal 
+        isOpen={isSignUpModalOpen} 
+        onClose={() => setIsSignUpModalOpen(false)} 
+        darkMode={darkMode}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </div>
   );
 };
