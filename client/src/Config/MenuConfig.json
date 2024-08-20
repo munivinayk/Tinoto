@@ -1,0 +1,29 @@
+{
+  "menuItems": [
+    {
+      "name": "Home",
+      "link": "#",
+      "active": true
+    },
+    {
+      "name": "Travel guides",
+      "link": "#",
+      "active": false
+    },
+    {
+      "name": "Hotels",
+      "link": "#",
+      "active": false
+    },
+    {
+      "name": "Deals",
+      "link": "#",
+      "active": false
+    }
+  ],
+  "friendsOptions": [
+    { "name": "Friends", "icon": "Users" },
+    { "name": "Public", "icon": "Globe" },
+    { "name": "Private", "icon": "Lock" }
+  ]
+}
