@@ -1,0 +1,20 @@
+{
+  "cities": [
+    { "name": "Tokyo", "country": "Japan" },
+    { "name": "Kyoto", "country": "Japan" },
+    { "name": "Osaka", "country": "Japan" },
+    { "name": "Paris", "country": "France" },
+    { "name": "New York", "country": "United States" },
+    { "name": "London", "country": "United Kingdom" },
+    { "name": "Rome", "country": "Italy" },
+    { "name": "Barcelona", "country": "Spain" },
+    { "name": "Sydney", "country": "Australia" },
+    { "name": "Berlin", "country": "Germany" },
+    { "name": "Amsterdam", "country": "Netherlands" },
+    { "name": "Hong Kong", "country": "China" },
+    { "name": "Singapore", "country": "Singapore" },
+    { "name": "Bangkok", "country": "Thailand" },
+    { "name": "Dubai", "country": "United Arab Emirates"},
+    { "name": "Hyderabad", "country": "India"} 
+  ]
+}

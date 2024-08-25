@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Moon, Sun } from 'lucide-react';
 import '../styles/LandingPage.css';
-import LandingPagePic from './Assets/TravellerLandingPageImage.png'
-import { ReactComponent as Logo } from './Assets/logo.svg';
+import LandingPagePic from '../Assets/TravellerLandingPageImage.png'
+import { ReactComponent as Logo } from '../Assets/logo.svg';
 import { Link } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';

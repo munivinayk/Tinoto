@@ -1,0 +1,184 @@
+/* WriteTravelGuide.css */
+
+.tinoto-write-guide {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tinoto-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.tinoto-nav-left,
+.tinoto-nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.tinoto-logo img {
+  height: 2rem;
+}
+
+.tinoto-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.tinoto-nav-link {
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.tinoto-search-container {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.tinoto-search-input {
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border-radius: 9999px;
+  background-color: #f3f4f6;
+  border: none;
+}
+
+.tinoto-search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #e5e7eb;
+}
+
+.tinoto-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.tinoto-login-button {
+  color: #4b5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.tinoto-signup-button {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+}
+
+.tinoto-main {
+  text-align: center;
+}
+
+.tinoto-main-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.tinoto-subtitle {
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+.tinoto-search-section {
+  position: relative;
+  max-width: 32rem;
+  margin: 0 auto 1rem;
+}
+
+.tinoto-city-search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.tinoto-suggestions-list {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  list-style-type: none;
+  padding: 0;
+}
+
+.tinoto-suggestion-item {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.tinoto-suggestion-item:hover {
+  background-color: #f3f4f6;
+}
+
+.tinoto-selected-cities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tinoto-city-tag {
+  display: flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.tinoto-remove-city-icon {
+  margin-left: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+}
+
+.tinoto-action-section {
+  margin-top: 2rem;
+}
+
+.tinoto-start-writing-button {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.tinoto-alternative-action {
+  margin-top: 1rem;
+  color: #4b5563;
+}
+
+.tinoto-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ef4444;
+  text-decoration: none;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

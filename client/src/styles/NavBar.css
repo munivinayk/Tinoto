@@ -1,0 +1,167 @@
+/* NavBar.css */
+.tinoto-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--tinoto-border);
+  background-color: var(--tinoto-bg);
+}
+
+.tinoto-nav-left,
+.tinoto-nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.tinoto-logo img {
+  height: 2rem;
+}
+
+.tinoto-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.tinoto-nav-link {
+  color: var(--tinoto-text-primary);
+  text-decoration: none;
+}
+
+.tinoto-search-container {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.tinoto-search-input {
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--tinoto-bg);
+  border: 1px solid var(--tinoto-border);
+  color: var(--tinoto-text-primary);
+}
+
+.tinoto-search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--tinoto-secondary);
+}
+
+.tinoto-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tinoto-text-secondary);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.tinoto-login-button {
+  color: var(--tinoto-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.tinoto-signup-button {
+  background-color: var(--tinoto-primary);
+  color: var(--tinoto-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+}
+
+.tinoto-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tinoto-text-primary);
+  margin-left: 1rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tinoto-mode-toggle:hover {
+  background-color: var(--tinoto-border);
+}
+
+.Tinoto-home {
+  min-height: 100vh;
+  background-color: var(--tinoto-bg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 2rem;
+  margin-right: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--tinoto-text-primary);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--tinoto-bg);
+  border: 1px solid var(--tinoto-border);
+  color: var(--tinoto-text-primary);
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #e5e7eb;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.625rem;
+  color: var(--tinoto-text-secondary);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.nav-icon {
+  color: var(--tinoto-text-primary);
+  width: 1.5rem;
+  height: 1.5rem;
+}

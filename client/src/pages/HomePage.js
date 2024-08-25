@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Bell, User, Calendar, Plus, ChevronDown, Users, Globe, Lock } from 'lucide-react';
-import '../styles/HomePage.css'
-import { ReactComponent as Logo } from './Assets/logo.svg';
-import menuConfig from '../Config/MenuConfig.json'
+import { Search, X, Bell, User, Calendar, Plus, ChevronDown, Users, Globe, Lock } from 'lucide-react';
+import { useTheme } from '../styles/ThemeContext';
+import menuConfig from '../Config/MenuConfig.json';
 
 const HomePage = () => {
   const [destination, setDestination] = useState('');
@@ -13,6 +12,8 @@ const HomePage = () => {
   const [showFriendsDropdown, setShowFriendsDropdown] = useState(false);
   const [selectedFriendOption, setSelectedFriendOption] = useState(menuConfig.friendsOptions[0]);
   const dropdownRef = useRef(null);
+  const [selectedDestinations, setSelectedDestinations] = useState([]);
+  const { darkMode } = useTheme();
 
   const iconComponents = {
     Users: Users,
@@ -26,6 +27,7 @@ const HomePage = () => {
         setShowFriendsDropdown(false);
       }
     };
+      
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -45,50 +47,35 @@ const HomePage = () => {
     setIsPlanning(false);
   };
 
-  return (
-    <div className="Tinoto-home">
-      <nav className="nav">
-        <div className="nav-left">
-                  <div className="logo">
-          <Logo className="logo-icon" />
-          <span className="logo-text">Tinoto</span>
-        </div>
-        
-         <div className="nav-links">
-            {menuConfig.menuItems.map((item, index) => (
-              <a 
-                key={index}
-                href={item.link}
-                className={`nav-link ${item.active ? 'active' : ''}`}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="nav-right">
-          <div className="search-container">
-            <input type="text" placeholder="Enter place or user" className="search-input" />
-            <Search className="search-icon" />
-          </div>
-          <Bell className="nav-icon" />
-          <User className="nav-icon" />
-        </div>
-      </nav>
+  const handleAddDestination = () => {
+    if (destination && !selectedDestinations.includes(destination)) {
+      setSelectedDestinations([...selectedDestinations, destination]);
+      setDestination('');
+    }
+  };
 
-      <main className="main-content">
-        <h1 className="main-title">Plan a new trip</h1>
+  const handleRemoveDestination = (dest) => {
+    setSelectedDestinations(selectedDestinations.filter(d => d !== dest));
+  };
+
+  return (
+    <div className={`tinoto-page ${darkMode ? 'dark-mode' : ''}`}>
+      <main className="tinoto-main">
+        <form  onSubmit={handleStartPlanning} className="trip-form">
+        <h1 className="tinoto-main-title">Plan a new trip</h1>
+        <p className="tinoto-subtitle">Start your journey with Tinoto</p>
         
-        <form onSubmit={handleStartPlanning} className="trip-form">
+        <div className="tinoto-search-section">
           <input
             type="text"
             placeholder="Where to? e.g. Paris, Hawaii, Japan"
-            className="destination-input"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
+            className="tinoto-search-input"
+            onKeyPress={(e) => e.key === 'Enter' && handleAddDestination()}
           />
-          
-          <div className="dates-container">
+        </div>
+        <div className="dates-container">
             <p className="dates-label">Dates (optional)</p>
             <div className="dates-inputs">
               <div className="date-input">
@@ -112,7 +99,7 @@ const HomePage = () => {
             </div>
           </div>
           
-<div className="trip-options">
+          <div className="trip-options">
           <button type="button" className="invite-button">
             <Plus className="invite-icon" />
             Invite tripmates
@@ -149,15 +136,26 @@ const HomePage = () => {
             )}
           </div>
         </div>
-          
-          <div className="start-planning-container">
-            <button type="submit" className="start-planning-button">
-              Start planning
-            </button>
-          </div>
-        </form>
+
+        <div className="tinoto-selected-items">
+          {selectedDestinations.map((dest, index) => (
+            <div key={index} className="tinoto-item-tag">
+              <span>{dest}</span>
+              <X
+                className="tinoto-remove-icon"
+                onClick={() => handleRemoveDestination(dest)}
+              />
+            </div>
+          ))}
+        </div>
         
-        <p className="write-guide-text">Or write a new guide</p>
+        <div className="tinoto-action-section">
+          <button className="tinoto-primary-button">Start planning</button>
+          <p className="tinoto-alternative-action">
+            Or <Link to="/guide" className="tinoto-link">write a new guide</Link>
+          </p>
+        </div>
+        </form>
       </main>
     </div>
   );
