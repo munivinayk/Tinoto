@@ -168,7 +168,8 @@ body {
 }
 
 .destination-input, .dates-container {
-
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--tinoto-border);
@@ -181,7 +182,6 @@ body {
   font-size: 0.875rem;
   color: var(--tinoto-text-primary);
   margin-bottom: 0.25rem;
-
 }
 
 .dates-inputs {
@@ -237,6 +237,7 @@ body {
   display: flex;
   align-items: center;
   background-color: var(--tinoto-bg);
+
   border-radius: 0.375rem;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
@@ -300,8 +301,3 @@ body {
   margin-right: 0.5rem;
 }
 
-.trip-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
