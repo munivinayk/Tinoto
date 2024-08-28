@@ -65,7 +65,8 @@ const LandingPage = () => {
             vacation planning & road trips, powered by AI and advanced mapping technology.
           </p>
           <div className="cta-buttons">
-            <button className="btn btn-primary">Start planning</button>
+            <Link to="/home">
+            <button className="btn btn-primary">Start planning</button></Link>
             <button className="btn btn-secondary">Get the app</button>
           </div>
         </div>

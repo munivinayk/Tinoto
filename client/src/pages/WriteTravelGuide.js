@@ -74,7 +74,7 @@ const WriteTravelGuide = () => {
         <div className="tinoto-action-section">
           <button className="tinoto-primary-button">Start writing</button>
           <p className="tinoto-alternative-action">
-            Or <Link to="/" className="tinoto-link">start planning a trip</Link>
+            Or <Link to="/home" className="tinoto-link">start planning a trip</Link>
           </p>
         </div>
       </main>

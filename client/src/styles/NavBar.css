@@ -6,6 +6,7 @@
   padding: 1rem;
   border-bottom: 1px solid var(--tinoto-border);
   background-color: var(--tinoto-bg);
+  margin-bottom: 0;
 }
 
 .tinoto-nav-left,
@@ -31,7 +32,6 @@
 
 .tinoto-search-container {
   position: relative;
-  margin-right: 1rem;
 }
 
 .tinoto-search-input {
@@ -50,8 +50,7 @@
 .tinoto-search-icon {
   position: absolute;
   left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0.625rem;
   color: var(--tinoto-text-secondary);
   width: 1.25rem;
   height: 1.25rem;
@@ -92,8 +91,8 @@
 }
 
 .Tinoto-home {
-  min-height: 100vh;
   background-color: var(--tinoto-bg);
+  margin-bottom: 0;
 }
 
 .nav {
@@ -102,6 +101,7 @@
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 0;
 }
 
 .nav-left {
@@ -164,4 +164,203 @@
   color: var(--tinoto-text-primary);
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.tinoto-desktop-suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--tinoto-bg);
+  border: 1px solid var(--tinoto-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  z-index: 1000;
+}
+
+.tinoto-desktop-suggestion-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tinoto-desktop-suggestion-item:hover {
+  background-color: var(--tinoto-bg-light);
+}
+
+.tinoto-desktop-suggestion-name {
+  font-weight: bold;
+  color: var(--tinoto-text-primary);
+}
+
+.tinoto-desktop-suggestion-region {
+  font-size: 0.875rem;
+  color: var(--tinoto-text-secondary);
+}
+
+.tinoto-desktop-suggestion-type {
+  font-size: 0.75rem;
+  color: var(--tinoto-text-secondary);
+  background-color: var(--tinoto-bg-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .tinoto-nav {
+    padding: 0.5rem;
+  }
+
+  .tinoto-nav-right {
+    gap: 0.5rem;
+  }
+
+  .tinoto-search-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--tinoto-bg);
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .tinoto-search-container.mobile-open {
+    display: block;
+  }
+
+  .tinoto-search-input {
+    width: 100%;
+    padding-right: 2.5rem;
+  }
+
+  .tinoto-search-close {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--tinoto-text-secondary);
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+
+  .tinoto-mobile-search-icon {
+    cursor: pointer;
+  }
+
+  .mobile-search-open .tinoto-nav-left,
+  .mobile-search-open .tinoto-nav-right > *:not(.tinoto-search-container) {
+    display: none;
+  }
+}
+
+.tinoto-mobile-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--tinoto-bg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.tinoto-mobile-search-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--tinoto-border);
+}
+
+.tinoto-mobile-search-input {
+  flex-grow: 1;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: transparent;
+  color: var(--tinoto-text-primary);
+}
+
+.tinoto-mobile-search-input:focus {
+  outline: none;
+}
+
+.tinoto-mobile-search-close {
+  cursor: pointer;
+  color: var(--tinoto-text-secondary);
+}
+
+.tinoto-mobile-suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.tinoto-mobile-suggestion-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--tinoto-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.tinoto-mobile-suggestion-name {
+  font-size: 1rem;
+  color: var(--tinoto-text-primary);
+}
+
+.tinoto-mobile-suggestion-region {
+  font-size: 0.875rem;
+  color: var(--tinoto-text-secondary);
+}
+
+.tinoto-mobile-suggestion-type {
+  font-size: 0.75rem;
+  color: var(--tinoto-text-secondary);
+  background-color: var(--tinoto-bg-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .tinoto-nav {
+    padding: 0.5rem;
+  }
+
+  .tinoto-nav-right {
+    gap: 0.5rem;
+  }
+
+  .tinoto-mobile-search-icon {
+    cursor: pointer;
+  }
 }

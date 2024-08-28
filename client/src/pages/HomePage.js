@@ -1,18 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, X, Bell, User, Calendar, Plus, ChevronDown, Users, Globe, Lock } from 'lucide-react';
 import { useTheme } from '../styles/ThemeContext';
 import menuConfig from '../Config/MenuConfig.json';
+import SearchInput from '../components/SearchInput';
+import citiesData from '../Data/CitiesData.json'
 
 const HomePage = () => {
   const [destination, setDestination] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [isPlanning, setIsPlanning] = useState(false);
   const [showFriendsDropdown, setShowFriendsDropdown] = useState(false);
   const [selectedFriendOption, setSelectedFriendOption] = useState(menuConfig.friendsOptions[0]);
   const dropdownRef = useRef(null);
+
+ 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
+  const inputRef = useRef(null);
+  const [isFocused, setIsFocused] = useState(false);
+
   const [selectedDestinations, setSelectedDestinations] = useState([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [tripType, setTripType] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
   const { darkMode } = useTheme();
 
   const iconComponents = {
@@ -20,7 +33,7 @@ const HomePage = () => {
     Globe: Globe,
     Lock: Lock
   };
-
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -35,9 +48,36 @@ const HomePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (searchTerm.length > 1) {
+      const filteredCities = citiesData.cities.filter(city =>
+        city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        city.region.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        city.country.toLowerCase().includes(searchTerm.toLowerCase())
+      ).slice(0, 7);
+      setSuggestions(filteredCities);
+    } else {
+      setSuggestions([]);
+    }
+  }, [searchTerm]);
+
   const handleStartPlanning = (e) => {
     e.preventDefault();
+    if (selectedCities.length===0) {
+      setError('Choose atleast one destination to start planning');
+      return;
+    }
     setIsPlanning(true);
+
+    const planId = generatePlanId();
+    const planData = {
+      destinations: selectedCities,
+      startDate,
+      endDate,
+      tripSelection: selectedFriendOption.name
+    };
+    console.log(planData)
+    navigate(`/plan/${planId}`, { state: planData });
   };
 
   const handleResetPlanning = () => {
@@ -45,6 +85,8 @@ const HomePage = () => {
     setStartDate('');
     setEndDate('');
     setIsPlanning(false);
+    setSelectedCities([]);
+    setTripType('')
   };
 
   const handleAddDestination = () => {
@@ -58,10 +100,34 @@ const HomePage = () => {
     setSelectedDestinations(selectedDestinations.filter(d => d !== dest));
   };
 
+  const handleAddCity = (city) => {
+    if (selectedCities.length < 10 && !selectedCities.some(c => c.name === city.name)) {
+      setSelectedCities([...selectedCities, city]);
+      setSearchTerm('');
+      setSuggestions([]);
+      setError('');
+    }
+  };
+
+  const handleRemoveCity = (cityToRemove) => {
+    setSelectedCities(selectedCities.filter(city => city.name !== cityToRemove.name));
+  };
+
+  const generatePlanId = () => {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  };
+
+  const handleDestinationSelect = (city) => {
+    if (selectedDestinations.length < 5 && !selectedDestinations.some(d => d.name === city.name)) {
+      setSelectedDestinations([...selectedDestinations, destination]);
+      setError('');
+    }
+  };
+
   return (
     <div className={`tinoto-page ${darkMode ? 'dark-mode' : ''}`}>
       <main className="tinoto-main">
-        <form  onSubmit={handleStartPlanning} className="trip-form">
+      <form  onSubmit={handleStartPlanning} className="trip-form">
         <h1 className="tinoto-main-title">Plan a new trip</h1>
         <p className="tinoto-subtitle">Start your journey with Tinoto</p>
         
@@ -69,11 +135,37 @@ const HomePage = () => {
           <input
             type="text"
             placeholder="Where to? e.g. Paris, Hawaii, Japan"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="tinoto-search-input"
-            onKeyPress={(e) => e.key === 'Enter' && handleAddDestination()}
           />
+          {suggestions.length > 0 && (
+            <ul className="tinoto-suggestions-list">
+          {suggestions.map((city, index) => (
+            <li 
+              key={index} 
+              className="tinoto-suggestion-item"
+              onClick={() => handleAddCity(city)}
+            >
+              <div className="tinoto-suggestion-name">{city.name}</div>
+              <div className="tinoto-suggestion-region">{city.region}, {city.country}</div>
+              <div className="tinoto-suggestion-type">{city.type}</div>
+            </li>
+          ))}
+        </ul>
+          )}
+        </div>
+        {error && <p className="tinoto-error">{error}</p>}
+        <div className="tinoto-selected-items">
+          {selectedCities.map((city, index) => (
+            <div key={index} className="tinoto-item-tag">
+              <span>{city.name}</span>
+              <X
+                className="tinoto-remove-icon"
+                onClick={() => handleRemoveCity(city)}
+              />
+            </div>
+          ))}
         </div>
         <div className="dates-container">
             <p className="dates-label">Dates (optional)</p>
@@ -109,6 +201,8 @@ const HomePage = () => {
               type="button"
               className="friends-button"
               onClick={() => setShowFriendsDropdown(!showFriendsDropdown)}
+              onChange={(e) => setTripType(e.target.value)}
+              required
             >
               {React.createElement(iconComponents[selectedFriendOption.icon], { className: "friends-icon" })}
               {selectedFriendOption.name}
@@ -150,12 +244,12 @@ const HomePage = () => {
         </div>
         
         <div className="tinoto-action-section">
-          <button className="tinoto-primary-button">Start planning</button>
+          <button className="tinoto-primary-button" type="submit">Start planning</button>
           <p className="tinoto-alternative-action">
             Or <Link to="/guide" className="tinoto-link">write a new guide</Link>
           </p>
         </div>
-        </form>
+      </form>
       </main>
     </div>
   );

@@ -1,0 +1,12 @@
+/* ExplorePage.css */
+.tinoto-explore-page {
+  padding: 2rem;
+}
+
+.tinoto-explore-page h1 {
+  font-size: 2rem;
+  color: var(--tinoto-text-primary);
+  margin-bottom: 1rem;
+}
+
+/* Add more styles for the explore page as needed */
