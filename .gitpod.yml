@@ -2,7 +2,9 @@
 tasks:
   - name: Script Task
     init: echo 'npm install' # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
-    command: cd ./client npm start
+    command: |
+      cd ./client
+      echo npm start
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
