@@ -1,16 +1,14 @@
-# List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
 tasks:
   - name: Script Task
-    init: echo 'npm install' # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
+    init: echo 'npm install' # This runs during prebuild to install dependencies
     command: |
-      cd ./client
-      echo npm start
+      cd ./client  # Navigate to the client directory
+      npm install  # Ensure npm dependencies are installed in the client folder
+      npm start    # Start the frontend application
 
-# List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
+# List the ports to expose
 ports:
   - name: Frontend
     description: Port 3000 for the frontend
     port: 3000
     onOpen: open-preview
-
-# Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
