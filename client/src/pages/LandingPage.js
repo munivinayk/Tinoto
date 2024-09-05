@@ -6,23 +6,12 @@ import { ReactComponent as Logo } from '../Assets/logo.svg';
 import { Link } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';
+import { useTheme } from '../styles/ThemeContext';
 
 const LandingPage = () => {
-    const [darkMode, setDarkMode] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+    const { darkMode, toggleDarkMode } = useTheme();
     
   const handleSwitchToSignUp = () => {
     setIsLoginModalOpen(false);
@@ -47,7 +36,7 @@ const LandingPage = () => {
           <button className="btn btn-primary" onClick={() => setIsLoginModalOpen(true)}>Log in</button>
           <button className="btn btn-signup" onClick={() => setIsSignUpModalOpen(true)}>Sign up</button>
           <button 
-            onClick={toggleDarkMode} 
+            onClick={toggleDarkMode}
             className="btn btn-toggle"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
