@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    flex-direction: column;
+  }
+  .user-profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ff4444;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 50%;
+    font-weight: 800;
+  }
