@@ -12,6 +12,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: var(--tinoto-bg);
+  color: var(--tinoto-text-primary);
 }
 
 .tinoto-plan-header {
@@ -37,8 +39,10 @@
 }
 
 .tinoto-main-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--tinoto-text-primary);
 }
 
 .tinoto-header-details {
@@ -67,7 +71,7 @@
   background-color: rgba(255,255,255,0.2);
   border: none;
   border-radius: 4px;
-  color: white;
+  color: var(--tinoto-text-primary);
   cursor: pointer;
 }
 
@@ -126,7 +130,7 @@
 
 .tinoto-plan-footer {
   padding: 1rem;
-  background-color: #f0f0f0;
+  background-color: var(--tinoto-bg);
   text-align: center;
 }
 
@@ -147,6 +151,53 @@
   text-decoration: none;
 }
 
+.tinoto-trip-info-card {
+  display:flex;
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dark-mode .tinoto-trip-info-card {
+  background-color: var(--tinoto-bg-dark);
+  color: var(--tinoto-text-primary-dark);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.tinoto-trip-dates,
+.tinoto-trip-people {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--tinoto-text-secondary);
+}
+.dark-mode .tinoto-trip-dates,
+.dark-mode .tinoto-trip-people {
+  color: var(--tinoto-text-secondary-dark);
+}
+
+.tinoto-trip-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--tinoto-text-primary);
+}
+
+.dark-mode .tinoto-trip-title {
+  color: var(--tinoto-text-primary-dark);
+}
+
 @media (max-width: 768px) {
   .tinoto-plan-content {
     flex-direction: column;
@@ -161,4 +212,5 @@
   .tinoto-map-container {
     height: 300px;
   }
+
 }

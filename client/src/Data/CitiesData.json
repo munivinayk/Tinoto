@@ -29,13 +29,13 @@
     { "name": "Bali", "region": "Bali", "country": "Indonesia", "type": "Island" },
     { "name": "Barcelona", "region": "Catalonia", "country": "Spain", "type": "City" },
     { "name": "Amsterdam", "region": "North Holland", "country": "Netherlands", "type": "City" },
-    { "name": "Sydney", "region": "New South Wales", "country": "Australia", "type": "City", "lat": -33.8688, "lng": 151.2093, "description": "Capital of New South Wales" },
-    { "name": "Perth", "region": "Perth", "country": "Australia", "type": "City", "lat": -31.9505, "lng": 115.8605, "description": "Capital of Western Australia" },
+    { "name": "Sydney", "region": "New South Wales", "country": "Australia", "type": "City", "lat": -33.8688, "lng": 151.2093, "clat": -25.2744, "clng": 133.7751, "description": "Capital of New South Wales" },
+    { "name": "Perth", "region": "Perth", "country": "Australia", "type": "City", "lat": -31.9505, "lng": 115.8605, "clat": -25.2744, "clng": 133.7751, "description": "Capital of Western Australia" },
     { "name": "Dubai", "region": "", "country": "United Arab Emirates", "type": "City" },
     { "name": "Kyoto", "region": "Kansai", "country": "Japan", "type": "City" },
     { "name": "Santorini", "region": "", "country": "Greece", "type": "Island" },
     { "name": "Rio de Janeiro", "region": "", "country": "Brazil", "type": "City" },
-    { "name": "Brisbane", "region": "Queensland", "country": "Australia", "type": "City", "lat": -27.4698, "lng": 153.0251, "description": "Capital of Queensland" },
+    { "name": "Brisbane", "region": "Queensland", "country": "Australia", "type": "City", "lat": -27.4698, "lng": 153.0251, "clat": -25.2744, "clng": 133.7751, "description": "Capital of Queensland" },
     { "name": "Kita", "region": "Tokyo Prefecture", "country": "Japan", "type": "City" }
   ]
 }
