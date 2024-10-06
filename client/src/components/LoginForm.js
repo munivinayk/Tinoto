@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import authService from '../Services/authService';
 import '../styles/LoginForm.css';
 
 const LoginForm = ({ onSubmit, darkMode, onSwitchToSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    setError('');
+    try {
+      const data = await authService.login(email, password);
+      onSubmit(data);
+    } catch (err) {
+      setError(err.response?.data?.message || 'An error occurred during login');
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:5001/api/auth/google';
+  };
+
+  const handleFacebookLogin = () => {
+    window.location.href = 'http://localhost:5001/api/auth/facebook';
   };
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <button type="button" className="social-login facebook">
+      {error && <div className="error-message">{error}</div>}
+      <button type="button" className="social-login facebook" onClick={handleFacebookLogin}>
         Log in with Facebook
       </button>
-      <button type="button" className="social-login google">
+      <button type="button" className="social-login google" onClick={handleGoogleLogin}>
         <span>G</span>
         Log in with Google
       </button>
@@ -66,7 +83,6 @@ const LoginForm = ({ onSubmit, darkMode, onSwitchToSignUp }) => {
           onSwitchToSignUp();
         }}>Sign up</a>
       </div>
-
     </form>
   );
 };

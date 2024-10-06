@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const OAuthSuccess = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
+    const token = new URLSearchParams(location.search).get('token');
     if (token) {
-      localStorage.setItem('token', token);
-      navigate('/dashboard'); // Redirect to your app's main page
+      localStorage.setItem('user', JSON.stringify({ token }));
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
     }
-  }, [navigate]);
+  }, [location, navigate]);
 
-  return <div>Logging you in...</div>;
+  return <div>Processing login...</div>;
 };
 
 export default OAuthSuccess;

@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../Assets/logo.svg';
 import LoginForm from '../components/LoginForm';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
-  const handleSubmit = (loginData) => {
-    console.log('Login submitted:', loginData);
-    // Implement your login logic here
+  const navigate = useNavigate();
+
+  const handleSubmit = (userData) => {
+    console.log('Login successful:', userData);
+    // Redirect to dashboard or home page
+    navigate('/dashboard');
   };
 
   return (

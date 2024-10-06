@@ -14,6 +14,12 @@ module.exports = function(req, res, next) {
     req.user = decoded.user;
     next();
   } catch (err) {
-    res.status(401).json({ msg: 'Token is not valid' });
+    if (err.name === 'JsonWebTokenError') {
+      return res.status(401).json({ msg: 'Invalid token' });
+    } else if (err.name === 'TokenExpiredError') {
+      return res.status(401).json({ msg: 'Token has expired' });
+    } else {
+      return res.status(401).json({ msg: 'Token is not valid' });
+    }
   }
 };

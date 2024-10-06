@@ -3,12 +3,13 @@ import { X } from 'lucide-react';
 import LoginForm from './LoginForm';
 import '../styles/LoginModal.css';
 
-const LoginModal = ({ isOpen, onClose, darkMode, onSwitchToSignUp }) => {
+const LoginModal = ({ isOpen, onClose, darkMode, onSwitchToSignUp, onLoginSuccess }) => {
   if (!isOpen) return null;
 
-  const handleSubmit = (loginData) => {
-    console.log('Login submitted:', loginData);
-    // Implement your login logic here
+  const handleSubmit = (userData) => {
+    console.log('Login successful:', userData);
+    onLoginSuccess(userData);
+    onClose();
   };
 
   return (

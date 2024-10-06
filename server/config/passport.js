@@ -8,15 +8,19 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => {
-    done(null, user);
-  });
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+    .catch(err => {
+      done(err, null);
+    });
 });
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/auth/google/callback"
+    callbackURL: "http://localhost:5001/api/auth/google/callback"  // Make sure this matches exactly
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
@@ -33,7 +37,7 @@ passport.use(new GoogleStrategy({
       await user.save();
       done(null, user);
     } catch (err) {
-      console.error(err);
+      console.error('Error in Google Strategy:', err);
       done(err, null);
     }
   }
@@ -60,7 +64,7 @@ passport.use(new FacebookStrategy({
       await user.save();
       done(null, user);
     } catch (err) {
-      console.error(err);
+      console.error('Error in Facebook Strategy:', err);
       done(err, null);
     }
   }
