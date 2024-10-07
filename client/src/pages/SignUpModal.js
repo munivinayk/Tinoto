@@ -8,7 +8,8 @@ const SignUpModal = ({ isOpen, onClose, darkMode, onSwitchToLogin }) => {
 
   const handleSubmit = (signUpData) => {
     console.log('Sign up submitted:', signUpData);
-    // Implement your sign up logic here
+    // Remove the onSignUpSuccess call
+    onClose();
   };
 
   return (

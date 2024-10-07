@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import authService from '../Services/authService';
 
 const OAuthSuccess = () => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const token = new URLSearchParams(location.search).get('token');
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
     if (token) {
-      localStorage.setItem('user', JSON.stringify({ token }));
-      navigate('/dashboard');
-    } else {
-      navigate('/login');
+      authService.handleOAuthSuccess(token);
     }
-  }, [location, navigate]);
+  }, [location]);
 
-  return <div>Processing login...</div>;
+  return (
+    <div>
+      <h2>Authentication successful</h2>
+      <p>Redirecting...</p>
+    </div>
+  );
 };
 
 export default OAuthSuccess;

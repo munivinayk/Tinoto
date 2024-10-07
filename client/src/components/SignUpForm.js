@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import authService from '../Services/authService';
 import { Eye, EyeOff } from 'lucide-react';
 import '../styles/SignUpForm.css';
 
 const SignUpForm = ({ onSubmit, darkMode, onSwitchToLogin }) => {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    setError('');
+    try {
+      const data = await authService.register(email, password);
+      onSubmit(data);
+    } catch (err) {
+      setError(err.response?.data?.message || 'An error occurred during registration');
+      console.error('Registration error:', err);
+    }
   };
 
   return (

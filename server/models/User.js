@@ -7,28 +7,14 @@ const UserSchema = new mongoose.Schema({
     unique: true
   },
   password: {
-    type: String
-  },
-  googleId: {
     type: String,
-    unique: true,
-    sparse: true
-  },
-  facebookId: {
-    type: String,
-    unique: true,
-    sparse: true
+    required: true
   },
   name: {
-    type: String
-  },
-  avatar: {
-    type: String
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: false
   }
+  // Add other fields as needed
 });
 
 module.exports = mongoose.model('User', UserSchema);

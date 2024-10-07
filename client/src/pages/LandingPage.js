@@ -3,7 +3,7 @@ import { MapPin, Moon, Sun } from 'lucide-react';
 import '../styles/LandingPage.css';
 import LandingPagePic from '../Assets/TravellerLandingPageImage.png'
 import { ReactComponent as Logo } from '../Assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';
 import { useTheme } from '../styles/ThemeContext';
@@ -12,6 +12,7 @@ const LandingPage = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
     const { darkMode, toggleDarkMode } = useTheme();
+    const navigate = useNavigate();
     
   const handleSwitchToSignUp = () => {
     setIsLoginModalOpen(false);
@@ -21,6 +22,11 @@ const LandingPage = () => {
   const handleSwitchToLogin = () => {
     setIsSignUpModalOpen(false);
     setIsLoginModalOpen(true);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsLoginModalOpen(false);
+    navigate('/dashboard'); // Redirect to dashboard after successful login
   };
 
   return (
@@ -73,6 +79,7 @@ const LandingPage = () => {
         onClose={() => setIsLoginModalOpen(false)} 
         darkMode={darkMode}
         onSwitchToSignUp={handleSwitchToSignUp}
+        onLoginSuccess={handleLoginSuccess}
       />
       <SignUpModal 
         isOpen={isSignUpModalOpen} 

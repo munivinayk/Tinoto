@@ -21,11 +21,11 @@ const LoginForm = ({ onSubmit, darkMode, onSwitchToSignUp }) => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5001/api/auth/google';
+    window.location.href = `${process.env.REACT_APP_API_URL}/api/auth/google`;
   };
 
   const handleFacebookLogin = () => {
-    window.location.href = 'http://localhost:5001/api/auth/facebook';
+    window.location.href = `${process.env.REACT_APP_API_URL}/api/auth/facebook`;
   };
 
   return (

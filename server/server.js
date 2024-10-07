@@ -8,7 +8,10 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  credentials: true
+}));
 app.use(express.json());
 
 // Session middleware
@@ -27,29 +30,12 @@ app.use(passport.session());
 require('./config/passport');
 
 // Connect to MongoDB
-const uri = process.env.MONGODB_URI;
-const clientOptions = { 
-  serverApi: { version: '1', strict: true, deprecationErrors: true },
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-};
-
-async function run() {
-  try {
-    await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } catch (err) {
-    console.error("MongoDB connection error:", err);
-    if (err.name === 'MongoServerError') {
-      console.error("MongoDB Server Error Code:", err.code);
-      console.error("MongoDB Server Error Message:", err.errmsg);
-    }
-  }
-}
-
-// Call the run function to connect to MongoDB
-run();
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 const authRoutes = require('./routes/auth');
